@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE struts PUBLIC
+     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+     "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+<constant name="struts.multipart.maxSize" value="100000000"/>
+	<include file="struts-default.xml"></include>
+	<package name="Excel2010" extends="struts-default">
+		<action name="jump" class="excel.client.Clientshow" method="jump">
+			<result name="jump" type="dispatcher">/Frist.jsp</result>
+		</action>
+		<action name="jumpsele" class="excel.client.Clientshowsele" method="jumpsele">
+			<result name="jumpsele" type="dispatcher">/Frist.jsp</result>
+			<result name="failsele">/Failsele.jsp</result>
+		</action>
+		<action name="index" class="excel.client.Client" method="index">
+			<result name="index">/index.jsp</result>
+		</action>
+		<action name="showmap" class="excel.client.Clientshowmap" method="showpie">
+			<result name="showpie">/showmap.jsp</result>
+		</action>
+		<action name="upload" class="excel.upload.Upload">  
+            <result name="success">/read.jsp</result>  
+            <result name="input">/fail.jsp</result>  
+        </action> 
+        <action name="read" class="excel.upload.Upload" method="read">  
+            <result name="read">/success.jsp</result>   
+        </action> 
+        <action name="upload1" class="excel.upload.Upload" method="upload">
+			<interceptor-ref name="defaultStack">
+				<!-- 配置允许上传的文件类型，多个用","分隔 -->
+				<param name="fileUpload.allowedTypes">
+					application/vnd.ms-excel
+				</param>
+				<!-- 配置允许上传的文件大小，单位字节,本例为：1MB -->
+				<param name="fileUpload.maximumSize">11048576</param>
+			</interceptor-ref>
+			<result name="success">/result.jsp</result>
+			<result name="input">/upload.jsp</result>
+			
+		</action> 
+	</package>
+</struts>

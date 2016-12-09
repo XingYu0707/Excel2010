@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>Download</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	  <filter>
+    <filter-name>Fit</filter-name>
+    <filter-class>excel.method.Fit</filter-class>
+    <init-param>
+      <param-name>DEFAULT_URI_ENCODE</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>Fit</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  
+<!-- 配置Struts2的session的Filter -->
+<filter>
+<!--声明filter --> 
+<filter-name>struts-session</filter-name>
+<filter-class>Filter.SessionFilter</filter-class>
+</filter>
+ <!--定义Struts2的session Filter拦截的URL --> 
+<filter-mapping>
+<filter-name>struts-session</filter-name>
+<url-pattern>/Excel2010/showmap</url-pattern>
+</filter-mapping> 
+<filter-mapping>
+<filter-name>struts-session</filter-name>
+<url-pattern>/Excel2010/jumpsele</url-pattern>
+</filter-mapping>
+<filter-mapping>
+<filter-name>struts-session</filter-name>
+<url-pattern>/Excel2010/jump.action</url-pattern>
+</filter-mapping>
+<filter-mapping>
+<filter-name>struts-session</filter-name>
+<url-pattern>/Excel2010/showmap.action</url-pattern>
+</filter-mapping>
+  <!-- 用户在线数和登录数统计 -->
+<listener>
+ <listener-class>Monitor.SessionMon</listener-class> 
+</listener>
+<context-param>
+      <param-name>log4jConfigLocation</param-name>
+      <param-value>/WEB-INF/classes/log4j.properties</param-value>
+</context-param>
+</web-app>
